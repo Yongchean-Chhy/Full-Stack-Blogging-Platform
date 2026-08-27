@@ -1,0 +1,28 @@
+extends layout 
+block title
+    title Create a Blog
+
+block scripts 
+    script(src="/resources/js/frontend.js")
+    script(src="/resources/js/log_reg.js")
+    script(src="/resources/js/create.js")
+
+block content
+    header(class="dash_board_header")
+        div(class="logo") Adventure Stories
+        div(class="header_content") 
+            a(href="/about")
+                button#about_header About US
+    div(class="post_container")
+        div(class="create_post")
+            h2 Create New Post 
+            form(id="post_form")
+                div(class="form_group")
+                    label Title 
+                    input(type="text" id="post_title", placeholder="Enter post title..." required)
+                div(class="form_group")
+                    label Content 
+                    textarea(id="post_content", placeholder="Write your post..." required)
+                
+                button(type="submit" class="submit_button") Publish Post
+    

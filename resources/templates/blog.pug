@@ -1,0 +1,50 @@
+extends layout 
+block title 
+    title Blog
+block scripts
+    script(src="/resources/js/frontend.js")
+    script(src="/resources/js/log_reg.js")
+    script(src="/resources/js/create.js")
+    script(src="/resources/js/delete.js")
+block content
+    header(class="dash_board_header")
+        div(class="logo") Adventure Stories
+        div(class="header_content")
+            a(href="/dashboard")
+                button#about_header Dash Board
+    div(class="blog_container")
+        div(class="blog_header")
+            h1.blog_title= blog.title 
+            div(class="blog_meta")
+                div(class="meta_item")
+                    span= blog.author_name 
+                div(class="meta_item")
+                    span= blog.created_at.toLocaleDateString()
+        div(class="blog_content")
+            p.blog_text= blog.content
+        div(class="comments_section")
+            div(class="comments_header")
+                span Comments
+                span.comment_count= comments.length 
+            if currentUser 
+                form.comment_form(id="commentForm" onsubmit="return handle_comment(event)")
+                    textarea.comment_textarea(id="commentText" placeholder="Share your thoughts about this adventure..." required)
+                    button.comment_submit(type="submit") Post Comment
+                    div#commentMessage
+            else
+                div(class="comment_form")
+                    p.no-comments Please 
+                        a(href="/login" style="color: #667eea; font-weight: 600;") log into leave a comment.
+            div(class="comments_list")
+                if comments && comments.length >0
+                    each comment in comments
+                        div(class="comment")
+                            div(class="comment_header")
+                                span.comment_author= comment.author_name
+                                span.comment_date= new Date(comment.created_at).toLocaleDateString()
+                            p.comment_text=comment.content
+                            if currentUser && currentUser.is_admin
+                                button.delete_button(data-comment-id=comment.id) Delete
+                else
+                    div(class="no_comments")
+                        p No comments yet. Be the first to share your thoughts!

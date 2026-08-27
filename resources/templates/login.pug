@@ -1,0 +1,68 @@
+extend layout 
+block title 
+    title Login
+
+block scripts 
+    script(src="/resources/js/frontend.js")
+    script(src="/resources/js/log_reg.js")
+block content
+    header(class="dash_board_header")
+        div(class="logo") Adventure Stories
+        div(class="header_content")
+            a(href="/about")
+                button About Us
+    div(class="login_container")
+        div(class="login_header")
+            h2 Welcome Adventurer! 
+            p Please log in or create an account to continue your journey.
+
+        div(class="login_content")
+            div(class="login_message" id="login_message")
+                
+            div(id="login_section")
+                div(class="tabs")
+                    button(class="tab" onclick="switch_tab('login')") Login
+                    button(class="tab" onclick="switch_tab('register')") Sign Up
+
+            div(class="form_section" id="login_form_section")
+                form(id="login_form" onsubmit="return handle_login(event)")
+                    div(class="form_group")
+                        label(for="login_username") Username:
+                        input(type="text" id="login_username" name="username" required)
+
+                    div(class="form_group")
+                        label(for="login_password") Password:
+                        input(type="password" id="login_password" name="password" required)
+                    button(type="submit" class="submit_button") Log In
+
+            div(class="form_section_register" id="register_form")
+                form(onsubmit="return handle_register(event)")
+                    div(class="form_group")
+                        label(for="username") Username:
+                        input(type="text" id="register_username" name="username" required)
+                        
+                    div(class="form_group")
+                        label(for="email") Email:
+                        input(type="email" id="register_email" name="email" required)
+
+                    div(class="form_group")
+                        label(for="password") Password:
+                        input(type="password" id="register_password" name="password" required minlength="6")
+
+                    div(class="form_group")
+                        label(for="confirm_password") Confirm Password:
+                        input(type="password" id="confirm_password" name="confirm_password" required minlength="6")
+
+                    button(type="submit" class="submit_button") Create Account
+            
+            div(class="dashBoard" id="dashboard", style="display: none")
+                div(class="welcome_message" id="welcome_message", style="display: none")
+                    h3 Wrong Password or User name! 
+                    p Please Try again
+                div(class="welcome_message" id ="welcome_new", style="display: none")
+                    h3 Register Success 
+                    p Start your adventure now!
+    
+
+    
+                        

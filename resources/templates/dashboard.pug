@@ -1,0 +1,40 @@
+extend layout 
+block title 
+    title Dash Board 
+block content 
+    header(class="dash_board_header")
+        div(class="logo") Adventure Stories
+        div(class="header_content")
+            a(href="/about")
+                button About Us
+            if user
+                div(class="header_content")
+                    form(action="/logout" method="POST")
+                            button(type="submit") Log Out 
+    div(class="dashboard_container")
+        div(class="dashboard_action")
+            h1.dashboard_title Explore Adventures 
+            a.upload_button(href="/create_blog") Share Your Stories 
+
+        div(class="blog-grid")
+            if total_pages >= 1
+                nav.pagination
+                    if current_page > 1
+                        a.page_link(href=`dashboard?page=${current_page - 1}`) Previous
+                    span.page_info Page #{current_page} of #{total_pages}
+                    if current_page < total_pages 
+                        a.page-link(href=`/dashboard?page=${current_page + 1}`) Next
+                if blogs && blogs.length > 0
+                    each blog in blogs
+                        a.blog_card(href=`/blog/${blog.id}`)
+                            div(class="blog_content")
+                                h3.blog_title= blog.title 
+                                p.blog_excerpt= blog.content.substring(0, 150) + '...'
+                                .blog-meta
+                                    .blog-author
+                                    span= blog.author_name
+            else
+                div(class="empty_state")
+                    h2.empty-state-title No Adventures Yet
+                    p.empty-state-text Be the first to share your experience! 
+        
