@@ -273,12 +273,12 @@ This is a learning project and would need hardening before production use, inclu
  
 - Image uploads for blog posts
 - Like/favorite functionality
-- Blog search, 🏷️ categories and tags
+- Blog search, categories and tags
 - User profile pages
 - Edit and delete blog posts
 - Improved responsive design
 - Location info for hiking/camping destinations
-- Ratings and reviews, 🔔 notifications
+- Ratings and reviews, notifications
 - More robust admin dashboard
 - Cloud deployment
 ## What I Learned
